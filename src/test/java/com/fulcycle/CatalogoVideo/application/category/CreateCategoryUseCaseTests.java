@@ -17,6 +17,8 @@ import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 
@@ -50,6 +52,54 @@ public class CreateCategoryUseCaseTests {
         repository.create(category);
 
         assertThat(actual.getName()).isEqualTo(category.getName());
+        assertTrue(actual.getIsActive());
+    }
+
+
+    @Test
+    public void executeReturnsCreatedCategoryWithName(){
+        Category category = new Category( 
+            "Action"
+            );
+
+        when(repository.create(any(Category.class))).thenReturn(category);
+
+        CreateCategoryInputData input = new CreateCategoryInputData(
+            category.getName(),
+            category.getDescription(),
+            category.getIsActive()
+        );
+
+        CategoryOutputData actual = useCase.execute(input);
+        repository.create(category);
+
+        assertThat(actual.getName()).isEqualTo(category.getName());
+        assertTrue(actual.getIsActive());
+    }
+
+
+    @Test
+    public void executeReturnsCreatedCategoryWithIsActiveFalse(){
+        Category category = new Category( 
+            "Action",
+            "Description",
+            false
+            );
+
+        when(repository.create(any(Category.class))).thenReturn(category);
+
+        CreateCategoryInputData input = new CreateCategoryInputData(
+            category.getName(),
+            category.getDescription(),
+            category.getIsActive()
+        );
+
+        CategoryOutputData actual = useCase.execute(input);
+        repository.create(category);
+
+        assertThat(actual.getName()).isEqualTo(category.getName());
+        assertThat(actual.getDescription()).isEqualTo(category.getDescription());
+        assertFalse(actual.getIsActive());
     }
     
 }

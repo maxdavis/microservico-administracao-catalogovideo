@@ -4,7 +4,9 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.doReturn;
 
 import java.util.Optional;
+import java.util.UUID;
 
+import com.fulcycle.CatalogoVideo.application.exception.NotFoundException;
 import com.fulcycle.CatalogoVideo.application.usecase.category.common.CategoryOutputData;
 import com.fulcycle.CatalogoVideo.application.usecase.category.get.FindByIdCategoryUseCase;
 import com.fulcycle.CatalogoVideo.domain.entity.Category;
@@ -18,6 +20,7 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 public class FindByIdCategoryUseCaseTests {
@@ -53,6 +56,14 @@ public class FindByIdCategoryUseCaseTests {
 
         assertThat(category).isNotNull();
         assertThat(actual).isNotNull();
+
+    }
+
+    @Test
+    public void throwNotFoundExceptionWhenIdIsWrong() {
+        assertThrows(NotFoundException.class, () -> 
+           useCase.execute(UUID.fromString("8bc3a688-bdcb-11ec-9d64-0242ac120002"))
+        );
 
     }
 }

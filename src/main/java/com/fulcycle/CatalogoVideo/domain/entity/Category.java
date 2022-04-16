@@ -19,12 +19,17 @@ public class Category {
         this.description = description;
         this.isActive = isActive;
     }
-
+ 
     public Category(String name, String description) {      
         this.id = UUID.randomUUID();
         this.setName(name);
         this.setDescription(description);
         
+    }
+
+    public Category(String name) {  
+        this.id = UUID.randomUUID();     
+        this.name = name;
     }
 
     public Category(String name, String description, Boolean isActive) {      

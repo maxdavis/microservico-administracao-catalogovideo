@@ -3,7 +3,7 @@ package com.fulcycle.CatalogoVideo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes=CatalogoVideoApplicationTests.class)
 class CatalogoVideoApplicationTests {
 
 	@Test
