@@ -13,7 +13,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CreateCategoryUseCase implements ICreateCategoryUseCase {
 
-    @Autowired
     private ICategoryRespository repository;
 
     @Override

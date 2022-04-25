@@ -13,12 +13,12 @@ public class Category {
     private Boolean isActive = true; 
  
 
-    public Category(UUID id, String name, String description, Boolean isActive) {
+  /*  public Category(UUID id, String name, String description, Boolean isActive) {
         this.id = id;        
         this.name = name;
         this.description = description;
         this.isActive = isActive;
-    }
+    }*/
  
     public Category(String name, String description) {      
         this.id = UUID.randomUUID();
@@ -42,6 +42,18 @@ public class Category {
             this.deactivate();
         }
     }
+
+    public Category(UUID id, String name, String description, Boolean isActive) {
+        this.id = id;        
+        this.name = name;
+        this.description = description;
+        if(isActive){
+            this.active();
+        }else{
+            this.deactivate();
+        }
+    }
+
 
     public UUID getId() {
         return id;

@@ -1,0 +1,12 @@
+package com.fulcycle.CatalogoVideo.infrastructure.data;
+
+import java.util.UUID;
+
+import com.fulcycle.CatalogoVideo.infrastructure.persistence.CategoryPersistence;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SpringDataCategoryRepository extends JpaRepository<CategoryPersistence, UUID>{
+    
+    
+}
